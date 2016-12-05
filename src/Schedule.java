@@ -1,10 +1,16 @@
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
+/**
+ * Schedule that contains an array of Days of a single week
+ */
 public class Schedule {
     private Day[] days;
     PriorityQueue<Task> tasks;
 
+    /**
+     * Default constructor for Schedule
+     */
     public Schedule(){
         days = new Day[7];
         tasks = new PriorityQueue<>();
@@ -34,8 +40,8 @@ public class Schedule {
     }
 
     /**
-     *
-     * @param str
+     * Adds a task to the queue
+     * @param str String of task in format "taskName,timeRequired,dayDue,timeThatDayDue"
      */
     public void addTaskToQueue(String str){
         System.out.println(str);
@@ -49,6 +55,9 @@ public class Schedule {
         tasks.add(task);
     }
 
+    /**
+     * Adds the tasks in the priority queue into the schedule
+     */
     public void addTasksToSchedule(){
         while(!tasks.isEmpty()){
             Task t = tasks.poll();
@@ -56,14 +65,14 @@ public class Schedule {
             boolean taskAdded = false;
             int day = 0;
             double time = 0;
-            double timeNeeded = t.getTime();
+            double timeNeeded = t.getTimeNeeded();
             while(!taskAdded && day < 7){
                 if(time>23) {
                     day++;
                     time=0;
                 }
-                if(days[day].get((int)(time * 2)) == null) {
-                    days[day].set((int)(time * 2), t.getName());
+                if(days[day].get(time) == null) {
+                    days[day].set(time, t.getName());
                     timeNeeded -= 0.5;
                 }
                 if(timeNeeded == 0){
@@ -74,6 +83,9 @@ public class Schedule {
         }
     }
 
+    /**
+     * Adds sleep to schedule. Default sleep time 12AM to 8PM
+     */
     private void addSleep()
     {
         for(Day d: days)
