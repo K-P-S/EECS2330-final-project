@@ -1,3 +1,7 @@
+/**
+ * Day class with an array of size 48 representing each half hour of the day.
+ * Day has a method to add a class to the Day's schedule
+ */
 public class Day {
 
     // time[half hour of day] = task name

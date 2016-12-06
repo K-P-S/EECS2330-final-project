@@ -1,3 +1,6 @@
+/**
+ * A Task object that contains getters and setters for the different attributes of Task
+ */
 public class Task implements Comparable{
 
     private String name;
